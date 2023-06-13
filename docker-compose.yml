@@ -1,0 +1,19 @@
+
+services:
+  postgres-lab2:
+    image: postgres
+    environment:
+      POSTGRES_DB: lab2
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 12345678
+    ports:
+      - 5432:5432
+  lab2-container:
+    image: lab2:latest
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://host.docker.internal:5432/lab2
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 12345678
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    ports:
+      - 9090:9090
